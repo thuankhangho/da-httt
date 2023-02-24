@@ -9,7 +9,7 @@ import time
 ##Bien toan cuc##
 AIO_FEED_ID = "tempsensor"
 AIO_USERNAME = "ThuanKhang"
-AIO_KEY = "aio_AznZ87qkH5bwayfK5ebDVitP0o04"
+AIO_KEY = "aio_XJWC20ft5bLGlTTqtfTYgIti7TF8"
 
 ##Ham chuc nang##
 def connected(client):
