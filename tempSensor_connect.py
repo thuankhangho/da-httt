@@ -2,10 +2,14 @@
 import sys
 from Adafruit_IO import MQTTClient
 
+##TempSensor's temp##
+import random
+import time
+
 ##Bien toan cuc##
 AIO_FEED_ID = "tempsensor"
 AIO_USERNAME = "ThuanKhang"
-AIO_KEY = "aio_FbWO49kyheX5eqKqg0nH6k0mXCwy"
+AIO_KEY = "aio_AznZ87qkH5bwayfK5ebDVitP0o04"
 
 ##Ham chuc nang##
 def connected(client):
@@ -32,4 +36,7 @@ client.connect()
 client.loop_background()
 
 while True:
-    pass
+    value = random.randint(0, 100) #Tra ve nhiet do tu 1 - 100
+    print("Cap nhat: ", value)
+    client.publish("tempsensor-temp", value)
+    time.sleep(30) #Delay 30s
