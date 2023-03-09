@@ -1,4 +1,4 @@
-import 'package:farm_smass/src/login/view/LoginView.dart';
+import 'package:farm_smass/src/view/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 

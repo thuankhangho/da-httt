@@ -1,5 +1,5 @@
 import 'package:momentum/momentum.dart';
-import 'package:farm_smass/src/login/controller/LoginController.dart';
+import 'package:farm_smass/src/controller/LoginController.dart';
 
 class UserModel extends MomentumModel<LoginController> {
   UserModel(LoginController controller, {this.email = "", this.pw = ""})
