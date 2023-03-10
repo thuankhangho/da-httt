@@ -1,3 +1,4 @@
+import 'package:farm_smass/src/routes.dart';
 import 'package:farm_smass/src/view/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginView(),
+      initialRoute: 'login',
+      onGenerateRoute: Routers.generateRoute,
     );
   }
 }

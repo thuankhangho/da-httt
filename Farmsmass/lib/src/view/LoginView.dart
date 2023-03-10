@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import '../routes.dart';
 
-class LoginView extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _LoginViewState();
-}
+class LoginView extends StatelessWidget {
+  //late final TextEditingController emailController;
+  //late final TextEditingController passwordController;
 
-class _LoginViewState extends State<LoginView> {
+  //LoginView({required this.emailController, required this.passwordController});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +23,13 @@ class _LoginViewState extends State<LoginView> {
                 child: Container(
                     width: 200,
                     height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('assets/images/logo.png')),
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                //controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -40,8 +39,8 @@ class _LoginViewState extends State<LoginView> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                //controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -65,8 +64,7 @@ class _LoginViewState extends State<LoginView> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  //Navigator.push(
-                  //context, MaterialPageRoute(builder: (_) => HomePage()));
+                  Navigator.pushNamed(context, 'home');
                 },
                 child: Text(
                   'Login',
