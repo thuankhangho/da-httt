@@ -1,4 +1,3 @@
-import 'package:momentum/momentum.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -30,7 +29,6 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             Padding(
-
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(

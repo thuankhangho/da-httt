@@ -38,13 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   
   # State Management Lib
-  momentum: ^2.2.1
-  get: ^4.6.5
-  
-  #Firebase Auth
+  provider: ^6.0.5
+  #Firebase
+  firebase_core: ^2.7.1
   firebase_auth: ^4.2.10
-
-  #Firebase DB 
   cloud_firestore: ^4.4.4
 
 

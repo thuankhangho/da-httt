@@ -1,15 +1,9 @@
-import 'package:momentum/momentum.dart';
+import 'package:flutter/material.dart';
+
 import '../controller/LoginController.dart';
 
-class UserModel extends MomentumModel<LoginController> {
-  UserModel(LoginController controller, {this.email = "", this.pw = ""})
-      : super(controller);
-
+class UserModel extends ChangeNotifier {
   final String? email;
-  final String? pw;
-
-  @override
-  void update() {
-    UserModel(controller).updateMomentum();
-  }
+  final String? uid;
+  UserModel({this.email, this.uid});
 }
