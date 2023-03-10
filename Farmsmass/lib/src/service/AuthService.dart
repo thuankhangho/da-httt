@@ -23,7 +23,7 @@ class AuthService {
     return _auth.authStateChanges().map(_firebaseUser);
   }
 
-  Future SignOut() async {
+  Future LogOut() async {
     try {
       return await _auth.signOut();
     } catch (e) {

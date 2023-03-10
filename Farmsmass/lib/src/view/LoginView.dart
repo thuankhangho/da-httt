@@ -1,14 +1,15 @@
+import 'package:farm_smass/src/service/AuthService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../routes.dart';
 
 class LoginView extends StatelessWidget {
-  //late final TextEditingController emailController;
-  //late final TextEditingController passwordController;
-
-  //LoginView({required this.emailController, required this.passwordController});
-
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -29,7 +30,7 @@ class LoginView extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                //controller: emailController,
+                controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -40,7 +41,7 @@ class LoginView extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
-                //controller: passwordController,
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -63,8 +64,9 @@ class LoginView extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'home');
+                onPressed: () async {
+                  await authService.LoginWithMail(
+                      emailController.text, passwordController.text);
                 },
                 child: Text(
                   'Login',

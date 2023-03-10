@@ -1,20 +1,46 @@
+import 'package:farm_smass/src/model/UserModel.dart';
+import 'package:farm_smass/src/service/AuthService.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
   final List<String> entries = <String>['A', 'B', 'C'];
   final List<int> colorCodes = <int>[600, 500, 100];
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: entries.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
+    final authService = Provider.of<AuthService>(context);
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text('Hello'),
+          /*TextButton(
+            onPressed: () async {
+              await authService.LogOut();
+            },
+            child: Text(
+              'Logout',
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            ),
+          ),*/
+          Container(
             height: 50,
-            color: Colors.amber[colorCodes[index]],
-            child: Center(child: Text('Entry ${entries[index]}')),
-          );
-        });
+            width: 250,
+            decoration: BoxDecoration(
+                color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+            child: TextButton(
+              onPressed: () async {
+                await authService.LogOut();
+              },
+              child: Text(
+                'Logout',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
