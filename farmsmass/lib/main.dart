@@ -1,35 +1,63 @@
-import 'package:farm_smass/src/routes.dart';
-import 'package:farm_smass/src/service/AuthService.dart';
-import 'package:farm_smass/src/view/LoginView.dart';
-import 'package:farm_smass/src/wrapper.dart';
+import 'package:farm_smass/source/features/auth/controller/auth_controller.dart';
+import 'package:farm_smass/source/features/auth/model/user_model.dart';
+import 'package:farm_smass/source/features/auth/view/login_view.dart';
+import 'package:farm_smass/source/utils/loader_circle.dart';
+import 'package:farm_smass/source/utils/router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  UserModel? userModel;
+  void getData(WidgetRef ref, User data) async {
+    userModel = await ref
+        .watch(authControllerProvider.notifier)
+        .getUserData(data.uid)
+        .first;
+    ref.read(userProvider.notifier).update((state) => userModel);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [Provider<AuthService>(create: (_) => AuthService())],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+    return ref.watch(authStateChangeProvider).when(
+          data: (data) => MaterialApp.router(
+            title: "Farmsmass App",
+            routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
+              if (data != null) {
+                getData(ref, data);
+                if (userModel != null) {
+                  return loggedInRoute;
+                }
+              }
+              return loggedOutRoute;
+            }),
+            routeInformationParser: const RoutemasterParser(),
           ),
-          initialRoute: 'wrapper',
-          onGenerateRoute: Routers.generateRoute,
-        ));
+          error: (Object error, StackTrace stackTrace) =>
+              Text('Error:' + error.toString()),
+          loading: () => LoaderCircle(),
+        );
   }
 }
+
+
 /*
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
