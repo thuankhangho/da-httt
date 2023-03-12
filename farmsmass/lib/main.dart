@@ -38,7 +38,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     return ref.watch(authStateChangeProvider).when(
           data: (data) => MaterialApp.router(
-            title: "Farmsmass App",
+            title: "Quản lý vườn thông minh",
             routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
               if (data != null) {
                 getData(ref, data);

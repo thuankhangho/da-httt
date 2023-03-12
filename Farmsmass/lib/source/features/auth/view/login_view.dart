@@ -23,7 +23,7 @@ class LoginView extends ConsumerWidget {
     final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Login Screen'),
+          title: Text('Đăng nhập'),
         ),
         body: isLoading
             ? const LoaderCircle()
@@ -60,7 +60,7 @@ class LoginView extends ConsumerWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(90.0),
                           ),
-                          labelText: 'Password',
+                          labelText: 'Mật khẩu',
                         ),
                       ),
                     ),
@@ -71,7 +71,7 @@ class LoginView extends ConsumerWidget {
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
                           ),
-                          child: const Text('Log In'),
+                          child: const Text('Đăng nhập'),
                           onPressed: () {
                             signInWithMail(context, ref, _emailController.text,
                                 _pwController.text);
@@ -80,7 +80,7 @@ class LoginView extends ConsumerWidget {
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Forgot Password?',
+                        'Quên mật khẩu?',
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                     ),

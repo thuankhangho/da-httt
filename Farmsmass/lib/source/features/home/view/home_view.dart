@@ -14,7 +14,7 @@ class HomeView extends ConsumerWidget {
     final user = ref.watch(userProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          title: const Text("Trang chủ"),
         ),
         body: Column(
           children: [
@@ -28,7 +28,7 @@ class HomeView extends ConsumerWidget {
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  child: const Text('Log Out'),
+                  child: const Text('Đăng xuất'),
                   onPressed: () {
                     signOut(ref);
                   },
