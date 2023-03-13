@@ -43,7 +43,7 @@ class AuthService {
             email: UserCred.user!.email!,
             uid: UserCred.user!.uid);
 
-        await _users.doc(userModel.uid).set(userModel.toMap());
+        await _users.doc(UserCred.user!.uid).set(userModel.toMap());
       } else {
         userModel = await getUserData(UserCred.user!.uid).first;
       }
