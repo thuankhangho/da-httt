@@ -42,6 +42,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             title: "Quản lý vườn thông minh",
             routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
               if (data != null) {
+                print(data);
                 getData(ref, data);
                 if (userModel != null) {
                   return loggedInRoute;

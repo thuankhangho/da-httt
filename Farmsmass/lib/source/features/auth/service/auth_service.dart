@@ -26,8 +26,10 @@ class AuthService {
       _firestore.collection(FirebaseConstants.usersCollection);
 
   Stream<UserModel> getUserData(String uid) {
-    return _users.doc(uid).snapshots().map(
-        (event) => UserModel.fromMap(event.data() as Map<String, dynamic>));
+    return _users
+        .doc(uid)
+        .snapshots()
+        .map((event) => UserModel.fromMap(event.data() as dynamic));
   }
 
   Stream<User?> get authStateChange => _auth.authStateChanges();
@@ -36,16 +38,18 @@ class AuthService {
     try {
       final UserCred =
           await _auth.signInWithEmailAndPassword(email: email, password: pw);
-      print(UserCred.user!.email!);
+      print(UserCred.user!.uid!);
       if (UserCred.additionalUserInfo!.isNewUser) {
         UserModel userModel = UserModel(
             name: UserCred.user!.displayName ?? 'User',
             email: UserCred.user!.email!,
-            uid: UserCred.user!.uid);
+            uid: UserCred.user!.uid,
+            isRegistered: true);
 
         await _users.doc(UserCred.user!.uid).set(userModel.toMap());
       } else {
         userModel = await getUserData(UserCred.user!.uid).first;
+        print(userModel.name);
       }
       return right(userModel);
     } catch (e) {
