@@ -51,6 +51,7 @@ class _MyAppState extends ConsumerState<MyApp> {
               return loggedOutRoute;
             }),
             routeInformationParser: const RoutemasterParser(),
+            debugShowCheckedModeBanner: false,
           ),
           error: (Object error, StackTrace stackTrace) =>
               Text('Error:' + error.toString()),
